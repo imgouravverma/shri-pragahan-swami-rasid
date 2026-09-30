@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+body {
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* --- फॉर्म सेक्शन --- */
+.form-container {
+    max-width: 600px; margin: 30px auto; background: #ffffff;
+    padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.form-container h2 { text-align: center; color: #e65c00; margin-bottom: 25px; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; font-weight: 600; margin-bottom: 8px; color: #333; }
+.form-group input { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 16px; font-family: 'Poppins', sans-serif; }
+#generate-btn {
+    width: 100%; padding: 15px; background-color: #e65c00; color: white;
+    border: none; border-radius: 5px; font-size: 18px; font-weight: 600; cursor: pointer; transition: 0.2s; font-family: 'Poppins', sans-serif;
+}
+#generate-btn:hover { background-color: #cc5200; }
+
+/* ====================================================
+   रसीद मुख्य संरचना (1080x1920)
+   ==================================================== */
+#receipt-section {
+    width: 1080px;
+    height: 1920px;
+    margin: 0 auto;
+    display: none; 
+    background-size: 1080px 1920px;
+    background-position: top center;
+    background-repeat: no-repeat;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
+    padding-top: 530px; 
+}
+
+/* 1. Normal Receipt (1 - 999) */
+.theme-skyblue {
+    background-image: url('blue.png');
+    --label-color: #1e272e; 
+    --value-color: #b33939; 
+    --line-color: #2c3e50;  /* आपका बताया गया नया कलर */
+    --amount-bg: #2c3e50;   /* सॉलिड बैकग्राउंड */
+    --amount-text: #e4f7ff; /* टेक्स्ट कलर */
+}
+
+/* 2. Premium Receipt (1000 - 1999) */
+.theme-orange {
+    background-image: url('orange.png');
+    --label-color: #3e2723; 
+    --value-color: #b33939; 
+    --line-color: #e65c00;  
+    --amount-bg: #e65c00;   /* सॉलिड बैकग्राउंड */
+    --amount-text: #fff9f5; /* टेक्स्ट कलर */
+}
+
+/* 3. Luxury Receipt (2000+) */
+.theme-luxury {
+    background-image: url('maroon.png');
+    --label-color: #ffffff; 
+    --value-color: #ffb34e; 
+    --line-color: #ffb34e;  
+    --amount-bg: #ffb34e;   /* सॉलिड बैकग्राउंड */
+    --amount-text: #800505; /* टेक्स्ट कलर */
+}
+
+/* ====================================================
+   Overlay Content
+   ==================================================== */
+.receipt-overlay {
+    width: 100%;
+    padding: 0 80px;
+    box-sizing: border-box;
+}
+
+.top-meta-row { 
+    display: flex; justify-content: space-between; font-size: 28px; 
+    margin-bottom: 50px; font-weight: 700; color: var(--label-color);
+}
+.top-meta-row span { color: var(--value-color); }
+
+.receipt-row { 
+    display: flex; font-size: 30px; margin-bottom: 40px; width: 100%; box-sizing: border-box;
+}
+.receipt-label { font-weight: 600; white-space: nowrap; color: var(--label-color); }
+
+/* पुरानी गलती यहीं थी, अब इसे पूरी तरह से सुलझा लिया गया है */
+.receipt-value {
+    flex-grow: 1; 
+    border-bottom: 2px dashed var(--line-color); 
+    padding-left: 15px; 
+    font-weight: 700; 
+    color: var(--value-color);
+}
+
+.thank-you-text { 
+    font-size: 32px; text-align: center; margin: 40px 0; font-weight: 700; 
+    letter-spacing: 1px; color: var(--value-color);
+}
+
+/* अमाउंट बॉक्स की नई स्टाइल (Solid Background) */
+.amount-box-wrapper { text-align: center; margin: 30px 0; }
+.big-amount-box {
+    display: inline-block; 
+    background-color: var(--amount-bg); 
+    color: var(--amount-text); 
+    font-size: 45px; 
+    font-weight: 700; 
+    padding: 15px 60px; 
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15); /* लुक को बेहतर बनाने के लिए हल्का शैडो */
+}
+
+/* विशेष तिथियां */
+.special-dates-box {
+    border: 2px dashed var(--line-color); background-color: rgba(255, 255, 255, 0.1); 
+    padding: 20px; border-radius: 15px; margin: 40px auto; 
+    width: 80%; text-align: center; font-size: 26px; line-height: 1.8; 
+    font-weight: 600; color: var(--label-color);
+}
+/* डार्क थीम (Maroon) के लिए विशेष बॉक्स एडजस्टमेंट */
+.theme-luxury .special-dates-box {
+    background-color: rgba(0, 0, 0, 0.2); 
+}
+.special-dates-box .box-title { margin-bottom: 8px; font-size: 28px; font-weight: 700; text-decoration: underline; color: var(--value-color); }
+
+.receiver-wrapper { 
+    text-align: right; font-size: 28px; margin-top: 40px; 
+    font-weight: 700; padding-right: 20px; color: var(--label-color);
+}
+.receiver-wrapper span { border-bottom: 2px dashed var(--line-color); padding-bottom: 5px; color: var(--value-color); }
+
+/* --- Download Button --- */
+#action-buttons-container { text-align: center; margin: 40px auto; width: 1080px; display: none; }
+#save-gallery-btn {
+    padding: 20px 50px; font-size: 28px; background-color: #b33939; color: #ffffff;
+    border: none; border-radius: 50px; cursor: pointer; font-weight: 600; box-shadow: 0 5px 15px rgba(179, 57, 57, 0.4); transition: 0.3s; font-family: 'Poppins', sans-serif;
+}
+#save-gallery-btn:hover { background-color: #912727; }

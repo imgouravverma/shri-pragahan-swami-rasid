@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>डिजिटल चंदा रसीद</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- फॉर्म सेक्शन -->
+    <section id="form-section">
+        <div class="form-container">
+            <h2>चंदा विवरण दर्ज करें</h2>
+            <form id="donation-form">
+                <div class="form-group">
+                    <label for="receipt-no">रसीद संख्या:</label>
+                    <input type="text" id="receipt-no" required>
+                </div>
+                <div class="form-group">
+                    <label for="donation-date">चन्दा देने की तारीख:</label>
+                    <input type="date" id="donation-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="donor-name">चन्दा देने वाले का नाम:</label>
+                    <input type="text" id="donor-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">पता:</label>
+                    <input type="text" id="address" required>
+                </div>
+                <div class="form-group">
+                    <label for="amount-words">चन्दा की राशि शब्दों में:</label>
+                    <input type="text" id="amount-words" required>
+                </div>
+                <div class="form-group">
+                    <label for="amount-numbers">चन्दा की राशि अंकों में:</label>
+                    <input type="number" id="amount-numbers" required>
+                </div>
+                <div class="form-group">
+                    <label for="receiver-name">प्राप्तकर्ता का नाम:</label>
+                    <input type="text" id="receiver-name" required>
+                </div>
+                <button type="submit" id="generate-btn">रसीद जेनरेट करें</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- रसीद सेक्शन (1080x1920) -->
+    <section id="receipt-section">
+        <div class="receipt-overlay">
+            
+            <div class="top-meta-row">
+                <div>क्रमांक: <span id="view-receipt-no"></span></div>
+                <div>दिनांक: <span id="view-donation-date"></span></div>
+            </div>
+
+            <div class="receipt-row">
+                <span class="receipt-label">दानदाता का नाम:</span>
+                <span class="receipt-value" id="view-donor-name"></span>
+            </div>
+            
+            <div class="receipt-row">
+                <span class="receipt-label">पता:</span>
+                <span class="receipt-value" id="view-address"></span>
+            </div>
+            
+            <div class="receipt-row">
+                <span class="receipt-label">चंदा की राशि (शब्दों में):</span>
+                <!-- सिर्फ रुपए लिखा है, मात्र हटा दिया गया है -->
+                <span class="receipt-value"><span id="view-amount-words"></span> रुपए</span>
+            </div>
+
+            <div class="thank-you-text">
+                "चन्दा सधन्यवाद प्राप्त किया।"
+            </div>
+            
+            <div class="amount-box-wrapper">
+                <div class="big-amount-box">
+                    ₹ <span id="view-amount-numbers"></span>/-
+                </div>
+            </div>
+            
+            <!-- अपडेटेड विशेष महोत्सव तिथियां -->
+            <div class="special-dates-box">
+                <div class="box-title">विशेष महोत्सव तिथियां</div>
+                <div>अष्टमी दिनांक: 18 अक्टूबर 2026 (रविवार)</div>
+                <div>नवमी दिनांक: 19 अक्टूबर 2026 (सोमवार)</div>
+                <div>महाभंडारा दिनांक: 21 अक्टूबर 2026 (बुधवार)</div>
+            </div>
+            
+            <div class="receiver-wrapper">
+                प्राप्तकर्ता: <span id="view-receiver-name"></span>
+            </div>
+        </div>
+    </section>
+
+    <div id="action-buttons-container">
+        <button id="save-gallery-btn">📸 Save to Gallery (इमेज डाउनलोड करें)</button>
+    </div>
+
+    <!-- HTML2Canvas Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
